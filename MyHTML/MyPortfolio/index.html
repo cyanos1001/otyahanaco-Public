@@ -1,0 +1,88 @@
+<!DOCTYPE html>           <!-- HTML書きますよって言う -->
+<html lang="ja">          <!--言語は日本語を定義する-->
+<head>                    <!--頭のとこだよって宣言する-->
+  <meta charset="utf-8">  <!--忘れたから調べる-->
+  <title>太郎のポートフォリオサイト</title> <!--タイトルをつける-->
+  <link rel="icon" href="favicon.ico">      <!--ファビコンのアイコンの設定-->
+  <meta name="description" content="太郎のポートフォリオサイトです。">    <!--タイトルのコメントをつける-->
+  <link rel="stylesheet" href="css/styles.css">   <!--リンクタグ→リレーション属性がstylesheet ファイルの場所href属性→css/styles.css-->
+
+  <!--  <style>
+    h1 {
+      color: red;
+    }  
+  </style>  -->
+
+</head>        <!--閉めるときには/を忘れずに-->
+<body>         <!--こっから本体だよって宣言する-->
+<header>        <!--ヘッダーかきまーすって宣言する-->
+<div class="container">        <!--div…レイアウトのためのタグ class→スタイル（識別子をcontainerとする）-->
+  <div class="icon">
+    <img src="img/taro.png" width="120" height="120" alt="太郎のアイコンです">  <!--pngを指定しサイズを設定。画像がでなかったときの説明をかく-->
+  </div>
+  <div class="info">
+  
+    <h1>山田太郎</h1>                 <!--ヘッダー１は山田太郎って表示しろって書く-->
+    <p>UI/UXデザイナー見習いです</p>  <!--↑の説明-->
+    <ul>                              <!--箇条書きリストのこと-->
+      <li>                            <!--リストアイテムのこと-->
+        <a href="https://dotinstall.com">
+          <img src="img/blog.png" width="20" height="20" alt="ブログサイトの紹介画像です">
+        </a>                 <!--aタグでかこってあげる-->
+      </li>
+      <li>
+        <a href="https://dotinstall.com" target="_blank">  <!-- target="_blank"の属性を持たせることで、別タブで開く= -->
+          <img src="img/photos.png" width="20" height="20" alt="写真サイトへの紹介画像です">
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+ 
+</header>
+
+
+<!-- 作品紹介 -->           <!--コメントタグ。ショートカット→（CTRL/）-->
+<section class="works">                 <!--セクションを定義する-->
+  <h1>WORKS</h1>
+
+  <section>
+    <a href="../MyjsPractice/index.html">
+      <img src="img/game1.png" width="400" height="260" alt="勇者ゲームの紹介画像">
+    </a>
+
+    <h1><a href="../MyjsPractice/index.html">当たり探しゲーム</a></h1>       <!--ひとつのセクションのなかなのでh1でもおｋ-->
+    <p>8つの選択肢の中から当たりを当てる素晴らしいゲーム。<br>
+      作者である山田太郎による高度な技術とセンスにより、<br>
+      当たりを引いたときの快感に定評がある。<br>
+      ゲームマニアのあなたなら一度はプレイしてみたい作品。
+    </p>
+  </section>
+
+  <section>
+
+    <img src="img/work1.png" width="400" height="260" alt="勇者ゲームの紹介画像">
+    <h1>勇者ゲーム</h1>       <!--ひとつのセクションのなかなのでh1でもおｋ-->
+    <p>楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。</p>
+  </section>
+    
+
+  <section>
+    <img src="img/work2.png" width="400" height="260" alt="宝探しゲームの紹介画像">
+    <h1>宝探しゲーム</h1>
+    <p>楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。</p>
+  </section>
+
+  <section>
+    <img src="img/work3.png" width="400" height="260" alt="神経衰弱の紹介画像">
+    <h1>神経衰弱ゲーム</h1>
+    <p>楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。楽しいアプリです。</p>
+  </section>
+</section>
+<footer>
+  <p>(c)doinstall.com</p>
+</footer>
+
+</body>     <!--久々にみたけど、本体を定義した締めも忘れずに-->
+
+</html>

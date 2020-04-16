@@ -1,0 +1,73 @@
+h1 { /*要素型セレクター*/
+  color: skyblue;
+}
+
+.info { /*class型セレクター*/
+  color: skyblue;
+}
+.title {
+  font-weight: normal;
+}
+#title { /*idセレクター*/
+  color: pink
+}
+/* * {    全称セレクター
+  font-size: 24px;
+} */
+[target] { /*属税セレクター*/
+  font-weight: bold;
+}
+[href="#top"] {
+  font-size: 32px;
+}
+[href^="https"] {
+color: red
+}
+
+h1::before,
+h2::before {
+ content: '- ';
+}
+
+h1::after,
+h2::after {
+ content: ' -';
+}
+h4::before,
+h5::before {
+ content: '- ';
+}
+
+h4::after,
+h5::after {
+ content: attr(data-sb)
+}
+
+.btn {
+  width: 100px;
+  background: skyblue;
+  text-align: center;
+  padding: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+aside > :nth-child(3n) {
+  background: skyblue;
+}
+
+section > h2:nth-of-type(2) {
+  background: pink;
+}
+li:empty {
+  background: skyblue;
+}
+
+/* h1 { color: red;}
+h1#maim.b {color: yellow}
+div > #main.a { color: blue}
+div#about >h1 {color: pink} */

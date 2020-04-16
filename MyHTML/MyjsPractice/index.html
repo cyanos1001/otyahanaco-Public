@@ -1,0 +1,58 @@
+<!DOCTYPE html>                        <!--htmlで書きまーす-->
+<html lang="ja">                       <!--htmlは日本語-->
+ <head>                                <!--ヘッドの定義をする-->
+   <meta charset="utf-8">              <!--utf-8という文字コードでエンコード？-->
+   <title>Javascript Practice</title>  <!-- タイトルは、javascript Practiceです -->
+   <style>                             /*cssでスタイル（デザイン）を定義していきます*/
+      body  {                          /*bodyについて定義します*/
+        display: flex;                 /*横並びにします*/
+        flex-wrap: wrap;               /*左から右へ折り返す*/
+      } 
+     .box {                            /*素材をboxと定義します*/
+       width: 100px;                   /*幅を100px*/
+       height: 100px;                  /*縦を100px*/
+       background-color: skyblue;   /*背景色をスカイブルー*/
+       border-radius: 10%;             /*各角に10%の丸み*/
+       cursor: pointer;                /*マウスポインターをカーソルとして反応する*/
+       transition: 0.8s;               /*反応して変化する速度を0.8秒とする*/
+       margin: 1px 8px 0px;            /*余白を0.8ｐｘ、8ｐｘ、0ｐｘとする*/
+       text-align: center;             /*テキストを真ん中にする*/
+       line-height: 100px;             /*上下に100ピクセルずつ？*/
+      }                                /*boxの定義を閉じる*/
+     .win {                            /*winの処理を定義する*/
+       background: pink;            /*背景色をピンク*/
+       border-radius: 50%;             /*各辺に50％の丸味（円）*/
+       transform : rotate(360deg);     /*360度回転させる*/
+      }                                /*winの定義を閉じる*/
+      .lose {
+        transform: scale(0.9);         /*文字の大きさを0.8とする*/
+      }
+   </style>                            <!--スタイルの定義終わり。ここからｈｔｍｌに戻る-->
+ </head>                               <!--ヘッドの定義おわり-->
+ <body>                                <!--ここからボディを定義します-->
+
+    <script>                           //ここからｊｓで動きを定義していく
+     'use strict';                     //処理のエラーチェックをしてください
+     const num = 8;                   //numに5を割り当てて定数とする
+     const winner = Math.floor(Math.random() * num);  //winnrに0以上num未満のランダムな数字とする。Math.floorで小数点以下切り捨て
+
+     for (let i = 0; i < num; i++) {                 //iは0からはじまりnumより小さい間、iは1づつ増える。
+       const div = document.createElement('div');    //divという要素をdivという定数として定義する
+       div.classList.add('box');                     //boxをdivのクラスリストとして追加
+
+       div.addEventListener('click', () => {         //divの要素をクリックしたときに
+          if (i === winner) {                        //もし、iがwinnerと同じ値なら
+            div.textContent = 'win!';                //divにwin!と表示する
+            div.classList.add('win');                //divはwinのクラスとする
+          } else {                                   //そうでなければ
+            div.textContent = 'lose!';               //divにlose！と表示する 
+            div.classList.add('lose');               //divloseのクラスとする
+          }
+       });
+
+       document.body.appendChild(div);               //divはbodyの子要素とする
+     }
+
+    </script>                        <!--jsでの動きはこれで終わりです-->
+ </body>                             <!--ボディの定義はここで終わりです-->
+</html>                              <!--htmlの処理はここまで-->

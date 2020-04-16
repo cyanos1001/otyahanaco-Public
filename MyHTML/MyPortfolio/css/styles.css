@@ -1,0 +1,97 @@
+body {
+  color: #333 ;
+  font-family: Verdana, sans-serif; /*verdanaというフォント。それがなければゴシック体を使ってね*/
+  /* margin-top: 0px;  マージン↑を0ピクセル
+  margin-bottom: 0px;  マージン↓を0ピクセル
+  margin-right: 0px;   マージンみぎを０
+  margin-left: 0px; */
+  margin: 0; /*↑のような場合ならこれでもおｋ*/
+}
+
+header {
+  background-color: #efefef;
+  padding: 32px;
+}
+
+.container {                  /*ＨＴＭＬで定義したcontainerを操作するよ*/
+  /*background-color: pink;    背景色はピンク*/
+  width: 400px;              /*範囲は400ピクセル*/
+  margin-left: auto;         /*左のマージンは自動で*/
+  margin-right: auto;
+  display: flex;             /*.iconと.infoの親要素である.containerの中にこのプロパティを反映すると、左右に振り分けられる*/
+  align-items: center;      /*中央にそろえる*/
+}
+ 
+.icon {                        /*iconで定義したとこをの*/
+ /* background-color: skyblue; */
+}
+
+.icon img {                 /*iconで指定したイメージを*/
+  border-radius: 50%;       /*各辺を50％丸める*/
+  border-width: 4px;        /*枠の幅は4ｐｘ*/
+  border-style: solid;      /*枠の形はソリッド*/
+  border-color: white;    /*枠の色は白*/
+
+
+}
+
+.info {
+  /*background-color: tomato;*/
+  margin-left: 32px;  /*左の余白は32ｐｘ*/
+}
+
+.info h1 {             /*infoのｈ１を*/
+  font-weight: normal; /*フォントの太さは普通*/
+  font-size: 24px;     /*フォントのサイズは24ｐｘ*/
+  margin: 0;           /*余白は0*/
+}
+
+.info p {
+  margin: 0;            /*余白をすべて0*/
+  margin-bottom: 16px;  /*↓の余白を16ｐｘ*/
+}
+
+.info ul {
+  margin: 0;
+  padding: 0;            /*パディング0*/
+  list-style-type: none; /*リストの形はなし（リストの・を消す）*/
+  display: flex;         /*左右に振り分ける*/
+}
+
+.info ul li {           /*infoのulのliの*/
+  margin-right: 8px;    /*右の余白を8ｐｘにする*/
+}
+
+.works {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.works > h1 {           /*worksのすぐ下の階層のｈ１に*/
+  font-weight: normal;  /*フォントの太さは普通*/
+  font-size: 24px;      /*フォントサイズは24ｐｘ*/
+  text-align: center;   /*センターに寄せる*/
+  margin-top: 60px;     /*上余白を60ｐｘ*/
+  margin-bottom: 60px;
+}
+
+.works > section {      /*worksの直下のsectionに*/
+  margin-bottom: 60px;  /*下余白を60pxにする*/
+}
+
+.works > section > h1 { /*worksの直下のsectionの直下のh1に*/
+  font-weight: normal;  /*文字の太さは普通*/ 
+}
+
+.works p {             /*worksのｐの*/
+  line-height: 1.8;    /*pの行の高さを文字の1.8倍にする*/
+}
+
+footer p {             /*footerのpを*/
+  text-align: center;  /*テキストをセンターにする*/
+  font-size: 14px;     /*フォントサイズを14px*/
+  margin-bottom: 60px; /*下の余白を60pxにるす*/
+  color: gray;       /*色はグレー*/
+
+}
