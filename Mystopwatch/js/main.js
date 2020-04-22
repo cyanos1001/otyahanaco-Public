@@ -8,10 +8,11 @@
 
   let startTime;                            //starttimeを再代入
   let timeoutId;
+  let elapsedTime  = 0;                     //elapsedTimeを定義する　初期値は0とする
 
   function countUp() {                     //countUpの定義をする
     // console.log(Date.now() - startTime);   //現在ーstatTime　で経過の時間を割り出す
-    const d = new Date(Date.now() - startTime)//dはユーザーがクリックしたときの時刻から現在時刻を引いたものとする
+    const d = new Date(Date.now() - startTime + elapsedTime);//dは現在時刻からstrtTimeを引いてelapsedTimeを足したものとする
     const m = String(d.getMinutes()) .padStart(2, '0');//mは文字列としてｄの分の数値を2桁で返す。noneとき0で返す
     const s = String(d.getSeconds()) .padStart(2, '0');//sは以下略
     const ms = String(d.getMilliseconds()) .padStart(3, '0');//ms以下略
@@ -29,10 +30,12 @@
 
   stop.addEventListener('click', () => {   //stopをクリックしたときの動作を定義する
     clearTimeout(timeoutId);               //timeoutIdの処理を解除する
+    elapsedTime += Date.now() - startTime;  //ストップををクリックした時間ースタートをクリックした時間
   });
 
   reset.addEventListener('click', () => {  //resetをクリックしたときの動作を定義する
     timer.textContent = '00:00.000';       //timerのテキストを00：00.000にする
+    elapsedTime = 0;                       //elapsedTimeを0とする
   });
 
 }
