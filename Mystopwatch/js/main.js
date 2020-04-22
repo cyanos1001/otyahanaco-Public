@@ -7,6 +7,7 @@
   const reset = document.getElementById('reset');
 
   let startTime;                            //starttimeを再代入
+  let timeoutId;
 
   function countUp() {                     //countUpの定義をする
     // console.log(Date.now() - startTime);   //現在ーstatTime　で経過の時間を割り出す
@@ -16,16 +17,24 @@
     const ms = String(d.getMilliseconds()) .padStart(3, '0');//ms以下略
     timer.textContent = `${m}:${s}.${ms}`;   //timer　に表示させる値は、m：s：ms とする
 
-    setTimeout(() => {                     //setTimeoutを使って１０ミリ秒後に　countUpを呼び出す
-      countUp();
+    timeoutId = setTimeout(() => {                     //setTimeoutを使って１０ミリ秒後に　countUpを呼び出す 
+      countUp();                                       //timeoutIdにこれらの処理を取得させる
     }, 10);
   }
 
-
-  start.addEventListener('click', () => {   //クリックしたときの動作を定義する
+  start.addEventListener('click', () => {   //startをクリックしたときの動作を定義する
     startTime = Date.now();                  //startTime＝現在時刻と定義する
     countUp();                              //countUｐを実行
   });
+
+  stop.addEventListener('click', () => {   //stopをクリックしたときの動作を定義する
+    clearTimeout(timeoutId);               //timeoutIdの処理を解除する
+  });
+
+  reset.addEventListener('click', () => {  //resetをクリックしたときの動作を定義する
+    timer.textContent = '00:00.000';       //timerのテキストを00：00.000にする
+  });
+
 }
 
 
@@ -43,6 +52,7 @@
 //textContent 表示させるテキストを表す
 //padStart 文字列に対して〇桁で表示させる
 //String 文字列として認識させる
+//clearTimeout 指定したtimeoutIdの処理を解除する
 
 //【疑問】
 //let startTime→なぜletなのか
