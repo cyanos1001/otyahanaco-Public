@@ -23,17 +23,38 @@
     }, 10);
   }
 
+  function setButtonStateInitial() {
+    start.disabled = false;
+    stop.disabled = true;
+    reset.disabled = true;
+  }
+  function setButtonStateRunning() {
+    start.disabled = true;
+    stop.disabled = false;
+    reset.disabled = true;
+  }
+  function setButtonStateStopped() {
+    start.disabled = false;
+    stop.disabled = true;
+    reset.disabled = false;
+  }
+
+  setButtonStateInitial();                  //まず、setButtonStateInitialを反映させる
+
   start.addEventListener('click', () => {   //startをクリックしたときの動作を定義する
-    startTime = Date.now();                  //startTime＝現在時刻と定義する
+    setButtonStateRunning();                //setButtonStateRunningを反映させる
+    startTime = Date.now();                 //startTime＝現在時刻と定義する
     countUp();                              //countUｐを実行
   });
 
   stop.addEventListener('click', () => {   //stopをクリックしたときの動作を定義する
+    setButtonStateStopped();               //setButtonStateStoppedを反映させる
     clearTimeout(timeoutId);               //timeoutIdの処理を解除する
     elapsedTime += Date.now() - startTime;  //ストップををクリックした時間ースタートをクリックした時間
   });
 
   reset.addEventListener('click', () => {  //resetをクリックしたときの動作を定義する
+    setButtonStateInitial();               //setButtonStateInitialを反映させる
     timer.textContent = '00:00.000';       //timerのテキストを00：00.000にする
     elapsedTime = 0;                       //elapsedTimeを0とする
   });
@@ -56,6 +77,6 @@
 //padStart 文字列に対して〇桁で表示させる
 //String 文字列として認識させる
 //clearTimeout 指定したtimeoutIdの処理を解除する
-
+//.disabled 指定した要素を無効化させる？プロパティ
 //【疑問】
 //let startTime→なぜletなのか
