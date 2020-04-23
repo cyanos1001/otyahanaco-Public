@@ -8,11 +8,11 @@
     "middle",
     "set",
   ]
-  let word = words[Math.floor(Math.random() * words.length)]; //wordは、wordsの中の値からランダムな値を選択するまたその文字数とする
-  let loc = 0;            //locで今何文字目を売っているかをカウントする。初期値として0を代入
-  let score = 0;             //scoreという変数を定義する。初期値は０
-  let miss = 0;              //missという変数を定義する。初期値は0
-  const timeLimit = 3 * 1000;//timeLimit という定数を定義する 3*1000(3分)で初期化する
+  let word
+  let loc;            //locで今何文字目を売っているかをカウントする。初期値として0を代入
+  let score;             //scoreという変数を定義する。初期値は０
+  let miss;              //missという変数を定義する。初期値は0
+  const timeLimit = 6 * 3 * 10000;//timeLimit という定数を定義する 6*3*10000(3分)で初期化する
   let startTime;             //startTimeという変数を定義する
   let isPlaying = false;     //isPlayingという変数をで意義　初期値をfalseとする
 
@@ -43,8 +43,10 @@
       clearTimeout(timeoutId);             //timeoutIdをリセットする
       timerLabel.textContent = "0.00"      //timerLabelのテキストを　0.00とする
       setTimeout (() => {                  //100ミリ秒後に
-        alert('GameOver');                   //アラートをGameOverと表示する
+        alert('GameOver');                 //アラートをGameOverと表示する
       }, 100);
+
+      target.textContent = "click to replay";//targetのテキストを初期値にする
     }
   }
   window.addEventListener('click', () => {   //クリックされたとき、
@@ -52,7 +54,14 @@
       return
     }
     isPlaying = true;                        //isPlaying をtrueとする
+
+    loc = 0 ;                                //locの値を0にする
+    score = 0;                               //scoreの値を0にする
+    miss = 0;                                //missの値を0にする
+    scoreLabel.textContent = score;          //scoreLabelのテキストを初期値にする
+    missLabel.textContent = miss;            //missLabelのテキストを初期値にする
     target.textContent = word;               //targetのテキストをwordにする
+    word = words[Math.floor(Math.random() * words.length)];
     startTime = Date.now();                  //startTimeを現在時刻とする
     updateTimer();                           //updateTimerという残り時間を計算する関数を定義する
   });
