@@ -12,10 +12,13 @@
   let loc = 0;            //locで今何文字目を売っているかをカウントする。初期値として0を代入
   let score = 0;          //scoreという変数を定義する。初期値は０
   let miss = 0;           //missという変数を定義する。初期値は0
+  const timeLimit = 3 * 1000;//timeLimit という定数を定義する 3*1000(3分)で初期化する
+  let startTime;             //startTimeという変数を定義する
 
   const target = document.getElementById('target');   //taergetの要素を取得
   const scoreLabel = document.getElementById('score');//scoreLabelにscoreを取得する
   const missLabel = document.getElementById('miss');  //missLabelにmissを取得する
+  const timerLabel = document.getElementById('timer');//timerLabelにtimerを取得する
 
 
   function updateTarget(){                   //updateTargetを定義する
@@ -25,8 +28,15 @@
     }
     target.textContent = placeholder + word.substring(loc);//targetのテキストをsubstringのloc番目の文字列までpaceholderで上書きする
   }
+
+  function updateTimer(){
+    const timeLeft = startTime + timeLimit -Date.now();   //クリックされたときの時刻StartTime+timeLimit -現在時刻
+    timerLabel.textContent = (timeLeft / 1000).toFixed(2);//timerLabelのテキストを　timeLeft/1000した値の小数点2桁とする
+  }
   window. addEventListener('click', () => {  //クリックされたとき、
     target.textContent = word;               //targetのテキストをwordにする
+    startTime = Date.now();                  //startTimeを現在時刻とする
+    updateTimer();                           //updateTimerという残り時間を計算する関数を定義する
   });
 
   window.addEventListener('keydown', (e) => { //キーが押されたときの処理
@@ -50,3 +60,4 @@
 
 //substring   部分文字列を取得するメソッド
 //length   文字列の文字数を数値として認識してくれるメソッド
+//toFixed  小数点以下を表示させる
