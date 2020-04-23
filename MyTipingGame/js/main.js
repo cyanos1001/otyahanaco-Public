@@ -16,7 +16,7 @@
   const target = document.getElementById('target');   //taergetの要素を取得
   const scoreLabel = document.getElementById('score');//scoreLabelにscoreを取得する
   const missLabel = document.getElementById('miss');  //missLabelにmissを取得する
-  target.textContent = word;                          //targetのテキストコンテントにwordを設定
+
 
   function updateTarget(){                   //updateTargetを定義する
     let placeholder = '';                    //placeholderという変数を定義する。初期値は空
@@ -25,6 +25,9 @@
     }
     target.textContent = placeholder + word.substring(loc);//targetのテキストをsubstringのloc番目の文字列までpaceholderで上書きする
   }
+  window. addEventListener('click', () => {  //クリックされたとき、
+    target.textContent = word;               //targetのテキストをwordにする
+  });
 
   window.addEventListener('keydown', (e) => { //キーが押されたときの処理
    console.log(e.key);                        //押し込まれたキーの値を取得する
