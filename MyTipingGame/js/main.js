@@ -53,10 +53,11 @@
      const accuracy = score + miss === 0 ? 0 : score / (score + miss) * 100;
      alert(`${score} letters, ${miss} misses ${accuracy.toFixed(2)}% accutacy!`);
    }
-  window.addEventListener('click', () => {   //クリックされたとき、
+  target.addEventListener('click', () => {   //クリックされたとき、
     if (isPlaying === true) {                //もしisPlayingがtrueの場合、これらの処理をしない
       return;
     }
+    
     isPlaying = true;                        //isPlaying をtrueとする
 
     loc = 0 ;                                //locの値を0にする
