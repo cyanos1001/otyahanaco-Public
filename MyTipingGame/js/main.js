@@ -39,7 +39,10 @@
 
     if (timeLeft < 0) {                    //もし、timeleftが0より小さい場合
       clearTimeout(timeoutId);             //timeoutIdをリセットする
-      alert('GameOver');                   //アラートをGameOverと表示する
+      timerLabel.textContent = "0.00"      //timerLabelのテキストを　0.00とする
+      setTimeout (() => {                  //100ミリ秒後に
+        alert('GameOver');                   //アラートをGameOverと表示する
+      }, 100);
     }
   }
   window.addEventListener('click', () => {  //クリックされたとき、
@@ -73,4 +76,4 @@
 //toFixed  小数点以下を表示させる
 //setTimeout ある処理を一定時間後に実行する
 //clearTimeout  時間処理をクリアする
-//alert  指定した要素を表示させる
+//alert  指定した要素をアラートとして表示させる　※仕様上重いので必要な処理を先に済ませて表示させるようにする。不具合の原因となる。
