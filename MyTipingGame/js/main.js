@@ -30,14 +30,24 @@
   }
 
   function updateTimer(){
-    const timeLeft = startTime + timeLimit -Date.now();   //クリックされたときの時刻StartTime+timeLimit -現在時刻
+    const timeLeft = startTime + timeLimit - Date.now();   //クリックされたときの時刻StartTime+timeLimit -現在時刻
     timerLabel.textContent = (timeLeft / 1000).toFixed(2);//timerLabelのテキストを　timeLeft/1000した値の小数点2桁とする
+
+    const timeoutId = setTimeout(() => { //timeoutIDは10ミリ秒後に
+      updateTimer();                     //updateTimerを実行する
+    }, 10);
+
+    if (timeLeft < 0) {                    //もし、timeleftが0より小さい場合
+      clearTimeout(timeoutId);             //timeoutIdをリセットする
+      alert('GameOver');                   //アラートをGameOverと表示する
+    }
   }
-  window. addEventListener('click', () => {  //クリックされたとき、
+  window.addEventListener('click', () => {  //クリックされたとき、
     target.textContent = word;               //targetのテキストをwordにする
     startTime = Date.now();                  //startTimeを現在時刻とする
     updateTimer();                           //updateTimerという残り時間を計算する関数を定義する
   });
+
 
   window.addEventListener('keydown', (e) => { //キーが押されたときの処理
    console.log(e.key);                        //押し込まれたキーの値を取得する
@@ -61,3 +71,6 @@
 //substring   部分文字列を取得するメソッド
 //length   文字列の文字数を数値として認識してくれるメソッド
 //toFixed  小数点以下を表示させる
+//setTimeout ある処理を一定時間後に実行する
+//clearTimeout  時間処理をクリアする
+//alert  指定した要素を表示させる
