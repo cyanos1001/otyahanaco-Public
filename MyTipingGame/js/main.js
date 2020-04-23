@@ -10,10 +10,11 @@
   ]
   let word = words[Math.floor(Math.random() * words.length)]; //wordは、wordsの中の値からランダムな値を選択するまたその文字数とする
   let loc = 0;            //locで今何文字目を売っているかをカウントする。初期値として0を代入
-  let score = 0;          //scoreという変数を定義する。初期値は０
-  let miss = 0;           //missという変数を定義する。初期値は0
+  let score = 0;             //scoreという変数を定義する。初期値は０
+  let miss = 0;              //missという変数を定義する。初期値は0
   const timeLimit = 3 * 1000;//timeLimit という定数を定義する 3*1000(3分)で初期化する
   let startTime;             //startTimeという変数を定義する
+  let isPlaying = false;     //isPlayingという変数をで意義　初期値をfalseとする
 
   const target = document.getElementById('target');   //taergetの要素を取得
   const scoreLabel = document.getElementById('score');//scoreLabelにscoreを取得する
@@ -38,6 +39,7 @@
     }, 10);
 
     if (timeLeft < 0) {                    //もし、timeleftが0より小さい場合
+      isPlaying = false;                   //isPlayingをfalseとする
       clearTimeout(timeoutId);             //timeoutIdをリセットする
       timerLabel.textContent = "0.00"      //timerLabelのテキストを　0.00とする
       setTimeout (() => {                  //100ミリ秒後に
@@ -45,7 +47,11 @@
       }, 100);
     }
   }
-  window.addEventListener('click', () => {  //クリックされたとき、
+  window.addEventListener('click', () => {   //クリックされたとき、
+    if (isPlaying === true) {                //もしisPlayingがtrueの場合、これらの処理をしない
+      return
+    }
+    isPlaying = true;                        //isPlaying をtrueとする
     target.textContent = word;               //targetのテキストをwordにする
     startTime = Date.now();                  //startTimeを現在時刻とする
     updateTimer();                           //updateTimerという残り時間を計算する関数を定義する
@@ -53,6 +59,9 @@
 
 
   window.addEventListener('keydown', (e) => { //キーが押されたときの処理
+    if (isPlaying !== true) {                 //もしisPlayingが trueでない場合、これらの処理をしない
+      return
+    }
    console.log(e.key);                        //押し込まれたキーの値を取得する
    if (e.key === word[loc]) {                 //もし、e.keyの値とwordのloc番目の値が等しいとき
      loc++;                                   //locを一ずつ増やす
