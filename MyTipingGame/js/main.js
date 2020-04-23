@@ -1,19 +1,26 @@
 'use strict';
 
 {
-  const word = 'apple';  //word でappleと初期化
+  const words = [        //wordsを定義する
+    "apple",
+    "sky",
+    "blue",
+    "middle",
+    "set",
+  ]
+  let word = words[Math.floor(Math.random() * words.length)]; //wordは、wordsの中の値からランダムな値を選択するまたその文字数とする
   let loc = 0;            //locで今何文字目を売っているかをカウントする。初期値として0を代入
   let score = 0;          //scoreという変数を定義する。初期値は０
   let miss = 0;           //missという変数を定義する。初期値は0
 
-  const target = document.getElementById('target'); //taergetの要素を取得
+  const target = document.getElementById('target');   //taergetの要素を取得
   const scoreLabel = document.getElementById('score');//scoreLabelにscoreを取得する
   const missLabel = document.getElementById('miss');  //missLabelにmissを取得する
-  target.textContent = word;                        //targetのテキストコンテントにwordを設定
+  target.textContent = word;                          //targetのテキストコンテントにwordを設定
 
   function updateTarget(){                   //updateTargetを定義する
     let placeholder = '';                    //placeholderという変数を定義する。初期値は空
-    for (let i = 0; i < loc; i++) {             //iはloc番目まで１づつ増やす 初期値は0
+    for (let i = 0; i < loc; i++) {          //iはloc番目まで１づつ増やす 初期値は0
       placeholder += '_';                    //placeholder に_を追加していく
     }
     target.textContent = placeholder + word.substring(loc);//targetのテキストをsubstringのloc番目の文字列までpaceholderで上書きする
@@ -23,15 +30,20 @@
    console.log(e.key);                        //押し込まれたキーの値を取得する
    if (e.key === word[loc]) {                 //もし、e.keyの値とwordのloc番目の値が等しいとき
      loc++;                                   //locを一ずつ増やす
-     updateTarget();
+     if (loc === word.length) {               //もし、locがwordの文字数と同じ数値になったとき
+      word = words[Math.floor(Math.random() * words.length)]; //word=wordsのランダムな値とする
+      loc = 0                                                 //locを０とする
+     }
+     updateTarget();                          //uodateTrgetの処理を実行する
      score++;                                 //scoreを1づつ増やす
      scoreLabel.textContent =  score;         //scoreLabelのテキストに 更新されたscoreを代入する
    } else {                                   //そうでない場合
-     miss++;                                 //missを1づつ増やす
-     missLabel.textContent =  miss;          //missLabelのテキストに 更新されたmissを代入する
+     miss++;                                  //missを1づつ増やす
+     missLabel.textContent =  miss;           //missLabelのテキストに 更新されたmissを代入する
    }
   });
 }
 
 
 //substring   部分文字列を取得するメソッド
+//length   文字列の文字数を数値として認識してくれるメソッド
