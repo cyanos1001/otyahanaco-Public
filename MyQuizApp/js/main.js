@@ -12,12 +12,31 @@
   ];
   let currentNum = 0;
 
-  question.textContent = quizSet[currentNum].q;
+  question.textContent = quizSet[currentNum].q;//quwstionのテキストは　quizSetの上からcurrentNum番目のqの要素とする
 
-  quizSet[currentNum].c.forEach(choice => {
-    const li = document.createElement('li');
-    li.textContent = choice;
-    choices.appendChild(li);
+  function shuffle(arr) {  //shuffleという関数を定義してarrという引数を定義する
+ 
+  for( let i = arr. length - 1; i > 0; i --) {// //iはarrの全体範囲から-1した値。 i>0の間i-1する
+    const j = Math.floor(Math.random() * (i + 1)); //jはi+1個の要素からランダムに
+    [arr[j], arr[i]] = [arr[i], arr[j]];           //arrのjとarrのiを入れ替える
+  }
+  return arr;              //繰り返すとき、計算したarrの値を戻り値とする
+  }
+
+  const shuffledChoices = shuffle([...quizSet[currentNum].c]);//shuffledChoicesはquizSetのcurrentNum番目のcとする
+
+  shuffledChoices.forEach(choice => {    //shuffledChoicesの各要素の数だけ
+    const li = document.createElement('li');   //HTML要素のliを定数として作成
+    li.textContent = choice;   //liのテキストはchoiceとする
+    choices.appendChild(li);   //これらのliはchoices(ul)の子要素とする
   });
 
 }
+
+
+//forEach  与えられた関数を配列の各要素にたいしてその数だけ一度づつ実行する
+//document.createElement HTML要素を生成する。今回の場合はli
+//length 範囲
+//26について　　引き数自体が処理されてシャッフルされてしまうので、正解を要素の1番目とした場合、正誤判定がバグる。
+//→よって、もとの引数の要素の配列を維持したまま、シャッフルの処理をして表示させるために
+//→引数を[...引数]として囲う。すると、元の要素は維持される。
