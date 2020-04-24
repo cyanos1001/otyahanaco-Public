@@ -12,25 +12,40 @@
   ];
   let currentNum = 0;
 
-  question.textContent = quizSet[currentNum].q;//quwstionのテキストは　quizSetの上からcurrentNum番目のqの要素とする
+
 
   function shuffle(arr) {  //shuffleという関数を定義してarrという引数を定義する
- 
-  for( let i = arr. length - 1; i > 0; i --) {// //iはarrの全体範囲から-1した値。 i>0の間i-1する
+
+  for( let i = arr.length - 1; i > 0; i --) {// //iはarrの全体範囲から-1した値。 i>0の間i-1する
     const j = Math.floor(Math.random() * (i + 1)); //jはi+1個の要素からランダムに
     [arr[j], arr[i]] = [arr[i], arr[j]];           //arrのjとarrのiを入れ替える
   }
   return arr;              //繰り返すとき、計算したarrの値を戻り値とする
   }
 
-  const shuffledChoices = shuffle([...quizSet[currentNum].c]);//shuffledChoicesはquizSetのcurrentNum番目のcとする
+  function checkAnswer(li) {      //checkAnswerという関数を定義。引数をliとする
+    if (li.textContent === quizSet[currentNum].c[0]) { //もしliのテキストがquizSetのcuttentNumのcの0番目と等しいとき
+       li.classList.add('correct');                    //liクラスに”correct”と追加する
+    } else {
+      li.classList.add('wrong');
+    }
+  }
 
-  shuffledChoices.forEach(choice => {    //shuffledChoicesの各要素の数だけ
-    const li = document.createElement('li');   //HTML要素のliを定数として作成
-    li.textContent = choice;   //liのテキストはchoiceとする
-    choices.appendChild(li);   //これらのliはchoices(ul)の子要素とする
-  });
+  function setQuiz() {                           //setQuizという関数を定義する
+    question.textContent = quizSet[currentNum].q;//quwstionのテキストは　quizSetの上からcurrentNum番目のqの要素とする
 
+    const shuffledChoices = shuffle([...quizSet[currentNum].c]);//shuffledChoicesはquizSetのcurrentNum番目のcとする
+    shuffledChoices.forEach(choice => {       //shuffledChoicesの各要素の数だけ
+      const li = document.createElement('li');//HTML要素のliを定数として作成
+      li.textContent = choice;                //liのテキストはchoiceとする
+      li.addEventListener('click', () => {    //liをユーザーがクリックしたとき
+        checkAnswer(li);
+      });
+      choices.appendChild(li);   //これらのliはchoices(ul)の子要素とする
+    });
+  }
+
+  setQuiz();
 }
 
 
