@@ -4,6 +4,8 @@
   const question = document.getElementById('question');
   const choices = document.getElementById('choices')
   const btn = document.getElementById('btn')
+  const result = document.getElementById('result')
+  const scoreLabel = document.querySelector('#result > p')
 
   const quizSet = [
     {q: 'What is A?', c: ['A0', 'A1', 'A2']},
@@ -12,7 +14,7 @@
   ];
   let currentNum = 0;
   let isAnswered;
-
+  let score = 0;
 
   function shuffle(arr) {  //shuffleという関数を定義してarrという引数を定義する
 
@@ -28,8 +30,10 @@
       return;                     //これらの処理をしない
     }
     isAnswered = true;            //isAnsweredをtrueとする
+
     if (li.textContent === quizSet[currentNum].c[0]) { //もしliのテキストがquizSetのcuttentNumのcの0番目と等しいとき
        li.classList.add('correct');                    //liクラスに”correct”と追加する
+       score++;
     } else {
       li.classList.add('wrong');
     }
@@ -67,9 +71,14 @@
     }
     btn.classList.add('disabled');             //btnにdisabledクラスを追加
 
-    currentNum++;                        //currentNumを一づつ増やす
-    setQuiz();                           //setQuizを実行する
-  })
+    if (currentNum === quizSet.length - 1) {
+      scoreLabel.textContent = `Score: ${score} / ${quizSet.length}`;
+      result.classList.remove('hidden');     //resultにhiddenクラスを追加
+    } else {
+      currentNum++;                        //currentNumを一づつ増やす
+      setQuiz();                           //setQuizを実行する
+    }
+  });
 }
 
 
