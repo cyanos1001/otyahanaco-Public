@@ -33,11 +33,17 @@
     } else {
       li.classList.add('wrong');
     }
+
+    btn.classList.remove('disabled')             //disabledを反映させる
   }
 
   function setQuiz() {                           //setQuizという関数を定義する
     isAnswered = false;                          //isAnsweredをfalseとする
     question.textContent = quizSet[currentNum].q;//quwstionのテキストは　quizSetの上からcurrentNum番目のqの要素とする
+
+    while (choices.firstChild) {                  //choicesの最初の子要素がfolseやNullになるまで次の処理をする
+      choices.removeChild(choices.firstChild);   //choicesの最初の子要素を消す
+    }
 
     const shuffledChoices = shuffle([...quizSet[currentNum].c]);//shuffledChoicesはquizSetのcurrentNum番目のcとする
     shuffledChoices.forEach(choice => {       //shuffledChoicesの各要素の数だけ
@@ -51,6 +57,11 @@
   }
 
   setQuiz();
+
+  btn.addEventListener('click',() => {   //btnをクリックしたとき
+    currentNum++;                        //currentNumを一づつ増やす
+    setQuiz();                           //setQuizを実行する
+  })
 }
 
 
