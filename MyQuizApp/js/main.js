@@ -54,11 +54,19 @@
       });
       choices.appendChild(li);   //これらのliはchoices(ul)の子要素とする
     });
+    if (currentNum === quizSet.length - 1) { //もし、currentNumがクイズセットの数-1の値の場合
+      btn.textContent = 'Show Score';        //btnのテキストをShow Scoreとする
+    }
   }
 
   setQuiz();
 
   btn.addEventListener('click',() => {   //btnをクリックしたとき
+    if (btn.classList.contains('disabled')) {  //もしbtnにdiaabledクラスがついていた場合
+      return;                                  //これらの処理をしない
+    }
+    btn.classList.add('disabled');             //btnにdisabledクラスを追加
+
     currentNum++;                        //currentNumを一づつ増やす
     setQuiz();                           //setQuizを実行する
   })
