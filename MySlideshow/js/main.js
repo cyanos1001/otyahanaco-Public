@@ -24,11 +24,45 @@
     if (index === currentIndex) {                   //indexがcuttentindexの値と同じだったとき
       li.classList.add('current');                  //liにcurrentクラスを追加
     }
-    li.addEventListener('click', () => {
-      mainImage.src = image;
+    li.addEventListener('click', () => {            //liがクリックされたとき
+      mainImage.src = image;                        //mainimageのソースをimageとする
+      const thumbnails = document.querySelectorAll('.thumbnails > li');//thumbnailsにliの要素をすべて取得
+      thumbnails[currentIndex].classList.remove('current');  //thumbnailsのcurrentIndex番目の要素からcurrentを取り除く
+      currentIndex = index;                                  //indexをcurrentIndexとする
+      thumbnails[currentIndex].classList.add('current');     //thumbnailsのcurrentIndex番目の要素にcuttentを追加
     });
 
     li.appendChild(img);                            //liの子要素としてimgを追加する
     document.querySelector('.thumbnails').appendChild(li);// thumbnailsの子要素としてliを追加する
+  });
+
+  const next = document.getElementById('next');   //nextという定数にnextを取得する
+  next.addEventListener('click', () => {          //nextをクリックしたとき
+    let target = currentIndex + 1;              //定数(target)にcurrentIndex+1を取得する
+    if (target === images.length) {               //tergetがimagesの要素数の値と同じになったら
+      target = 0;                                 //tergetを０とする
+    }
+    document.querySelectorAll('.thumbnails > li')[target].click();//thumbnailsのliのtarget番目にclickされたときの処理を実行する
+  });
+
+  const prev = document.getElementById('prev');   //prevという定数にprevを取得する
+  prev.addEventListener('click', () => {          //prevをクリックしたとき
+    let target = currentIndex - 1;  //定数(target)にcurrentIndex-1を取得する
+    if (target < 0) {               //tergetが0より小さくなったら
+      target = images.length - 1;  //tergetをimagesのアイテムの数-1とする
+    }
+    document.querySelectorAll('.thumbnails > li')[target].click();//thumbnailsのliのtarget番目にclickされたときの処理を実行する
+  });
+
+  function playSlideshow() {  //playSlideshowという関数を定義。
+    setTimeout(() => {        //1秒後に実行
+      next.click();           //nextをクリックしたときと同じ動作をする
+      playSlideshow();        //paySlideshowを実行する
+    }, 1000);
+  }
+
+  const play = document.getElementById('play'); //playという定数にplayを取得
+  play.addEventListener('click', () => {        //playをクリックしたとき
+    playSlideshow();                            //playSlideshowを実行する
   });
 }

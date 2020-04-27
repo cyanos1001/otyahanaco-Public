@@ -35,7 +35,6 @@ nav li {
   font-size: 12px;
   padding: 4px;
   text-align: center;
-  margin-bottom: 8px;
   cursor: pointer;
   user-select: none;
 }
@@ -64,6 +63,7 @@ nav li:hover {
   cursor: pointer;
   opacity: 0.4;
 }
+
 .thumbnails li:hover,
 .thumbnails li.current {
   opacity: 1;
