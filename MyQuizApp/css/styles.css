@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 body {
   background: #efdec1;
   font-size: 14px;
@@ -10,6 +12,7 @@ body {
   background: #fff;
   border-radius: 4px;
   padding: 16px;
+  position: relative;
 }
 
 #question {
@@ -57,7 +60,7 @@ body {
   content: ' ... wrong!'
 }
 
-#btn {
+#btn, #result > a {
   background: #3498db;
   padding: 8px;
   border-radius: 4px;
@@ -65,10 +68,40 @@ body {
   text-align: center;
   color: #fff;
   box-shadow: 0 4px 0 #2880b9;
+
 }
 
 #btn.disabled {
   background: #ccc;
   box-shadow: 0 4px #bbb;
   opacity: 0.7;
+}
+
+#result {
+  position: absolute;
+  width: 300px;
+  background: #fff;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  top: 50px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  border-radius: 4px;
+  text-align: center;
+  transition: 0.4s; /*要素の2つの状態の変化を定義するプロパティ。２つの状態はclassなどで定義する*/
+}
+
+#result.hidden {
+  transform: translateY(-500px); /*与えられた要素の表示を変化させるプロパティ*/
+}
+
+#result > p {
+  font-size: 24px;
+
+}
+
+#result > a {
+  display: block;   /*親要素の幅いっぱいに表示*/
+  text-decoration: none;
 }

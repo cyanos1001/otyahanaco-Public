@@ -4,15 +4,17 @@
   const question = document.getElementById('question');
   const choices = document.getElementById('choices')
   const btn = document.getElementById('btn')
+  const result = document.getElementById('result')
+  const scoreLabel = document.querySelector('#result > p')
 
-  const quizSet = [
-    {q: 'What is A?', c: ['A0', 'A1', 'A2']},
-    {q: 'What is B?', c: ['B0', 'B1', 'B2']},
-    {q: 'What is C?', c: ['C0', 'C1', 'C2']},
-  ];
+  const quizSet = shuffle ([
+    {q: '世界で一番大きな湖は？', c: ['カスピ海', 'カリブ海', '琵琶湖']},
+    {q: '2の８乗は？', c: ['256', '64', '1024']},
+    {q: '次のうち、最初にリリースされた言語は？', c: ['Python', 'JavaScript', 'HTML']},
+  ]);
   let currentNum = 0;
   let isAnswered;
-
+  let score = 0;
 
   function shuffle(arr) {  //shuffleという関数を定義してarrという引数を定義する
 
@@ -28,16 +30,24 @@
       return;                     //これらの処理をしない
     }
     isAnswered = true;            //isAnsweredをtrueとする
+
     if (li.textContent === quizSet[currentNum].c[0]) { //もしliのテキストがquizSetのcuttentNumのcの0番目と等しいとき
        li.classList.add('correct');                    //liクラスに”correct”と追加する
+       score++;
     } else {
       li.classList.add('wrong');
     }
+
+    btn.classList.remove('disabled')             //disabledを反映させる
   }
 
   function setQuiz() {                           //setQuizという関数を定義する
     isAnswered = false;                          //isAnsweredをfalseとする
     question.textContent = quizSet[currentNum].q;//quwstionのテキストは　quizSetの上からcurrentNum番目のqの要素とする
+
+    while (choices.firstChild) {                  //choicesの最初の子要素がfolseやNullになるまで次の処理をする
+      choices.removeChild(choices.firstChild);   //choicesの最初の子要素を消す
+    }
 
     const shuffledChoices = shuffle([...quizSet[currentNum].c]);//shuffledChoicesはquizSetのcurrentNum番目のcとする
     shuffledChoices.forEach(choice => {       //shuffledChoicesの各要素の数だけ
@@ -48,9 +58,27 @@
       });
       choices.appendChild(li);   //これらのliはchoices(ul)の子要素とする
     });
+    if (currentNum === quizSet.length - 1) { //もし、currentNumがクイズセットの数-1の値の場合
+      btn.textContent = 'Show Score';        //btnのテキストをShow Scoreとする
+    }
   }
 
   setQuiz();
+
+  btn.addEventListener('click',() => {   //btnをクリックしたとき
+    if (btn.classList.contains('disabled')) {  //もしbtnにdiaabledクラスがついていた場合
+      return;                                  //これらの処理をしない
+    }
+    btn.classList.add('disabled');             //btnにdisabledクラスを追加
+
+    if (currentNum === quizSet.length - 1) {
+      scoreLabel.textContent = `Score: ${score} / ${quizSet.length}`;
+      result.classList.remove('hidden');     //resultにhiddenクラスを追加
+    } else {
+      currentNum++;                        //currentNumを一づつ増やす
+      setQuiz();                           //setQuizを実行する
+    }
+  });
 }
 
 
