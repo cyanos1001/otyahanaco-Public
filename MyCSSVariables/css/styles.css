@@ -1,0 +1,13 @@
+:root {
+  --my-color: blue;
+}
+
+h1 {
+  color: var(--my-color);
+  border-bottom: 3px solid var(--my-color);
+}
+
+p {
+  color: var(--my-color)
+}
+/* --変数名   で変数を設定できる*/
