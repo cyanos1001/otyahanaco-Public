@@ -54,15 +54,26 @@
     document.querySelectorAll('.thumbnails > li')[target].click();//thumbnailsのliのtarget番目にclickされたときの処理を実行する
   });
 
+  let timeoutId;
+
   function playSlideshow() {  //playSlideshowという関数を定義。
-    setTimeout(() => {        //1秒後に実行
+    timeoutId = setTimeout(() => {        //1秒後に実行
       next.click();           //nextをクリックしたときと同じ動作をする
       playSlideshow();        //paySlideshowを実行する
     }, 1000);
   }
 
+  let isPlaying = false;                        //isPlayingという変数を定義。初期値をfalse
+
   const play = document.getElementById('play'); //playという定数にplayを取得
   play.addEventListener('click', () => {        //playをクリックしたとき
-    playSlideshow();                            //playSlideshowを実行する
+    if (isPlaying === false) {                  //isPlayingがfalseの場合
+      playSlideshow();                          //playSlideshowを実行する
+      play.textContent = 'Pause';               //playのテキストをPauseとする
+    } else {                                    //そうでないとき
+      clearTimeout(timeoutId);                   
+      play.textContent = 'Play';
+    }
+    isPlaying = !isPlaying                    //isPlayingの値を反転させる
   });
 }
