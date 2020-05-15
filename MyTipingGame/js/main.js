@@ -7,6 +7,8 @@
     "blue",
     "middle",
     "set",
+    "moai",
+
   ];
   let word;
   let loc;            //locで今何文字目を売っているかをカウントする。初期値として0を代入
